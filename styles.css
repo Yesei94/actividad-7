@@ -4,7 +4,18 @@ body {
   margin: 0;
   background: #1a202c;
   color: #e2e8f0;
-  line-height: 1.6;
+  line-height: 24px;
+}
+
+a {
+  color: #4fd1c7;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #81e6d9;
+  text-decoration: underline;
 }
 
 
@@ -20,38 +31,43 @@ header, main, footer {
 
 header {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 25px;
+  padding: 25px;
 }
 
 header img {
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid #38b2ac;
+  flex-shrink: 0;
+  margin-right: 20px;
 }
 
 header h1 {
-  margin: 0;
-  font-size: 1.8em;
+  margin: 0 0 8px 0;
+  font-size: 24px;
   color: #edf2f7;
 }
 
 header p {
-  margin: 5px 0 15px;
+  margin: 0 0 15px 0;
   font-weight: bold;
   color: #a0aec0;
+  font-size: 16px;
 }
 
 header ul {
   list-style: none;
   padding: 0;
-  margin: 10px 0 0;
+  margin: 12px 0 0;
 }
 
 header ul li {
-  margin: 4px 0;
+  margin: 6px 0;
+  padding: 3px 0;
 }
 
 main h2 {
@@ -80,5 +96,5 @@ progress {
 footer {
   text-align: center;
   color: #a0aec0;
-  font-size: 0.9em;
+  font-size: 14px;
 }
