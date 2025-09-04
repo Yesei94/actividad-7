@@ -19,11 +19,98 @@
   --border-radius: 8px;
   --border-radius-sm: 6px;
   --transition: all 0.3s ease;
+  --animation-duration: 0.8s;
 }
 
 /* Reset y estilos base */
 * {
   box-sizing: border-box;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progressFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Clases para animaciones activadas por scroll */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-on-scroll.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-left-on-scroll {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-left-on-scroll.animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-right-on-scroll {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s ease-out;
+}
+
+.slide-right-on-scroll.animated {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 body {
@@ -73,20 +160,36 @@ header {
   padding: var(--spacing-lg);
 }
 
+/* Contenedor de foto y blog */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-shrink: 0;
+  margin-right: var(--spacing-md);
+}
+
 header img {
   width: 140px;
   height: 140px;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid var(--color-primary);
-  flex-shrink: 0;
-  margin-right: var(--spacing-md);
   transition: var(--transition);
+  animation: fadeInUp var(--animation-duration) ease-out forwards;
 }
 
-header img:hover {
-  transform: scale(1.05);
-  border-color: var(--color-primary-light);
+
+
+.blog-text {
+  color: var(--color-primary-light);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 5px;
 }
 
 header h1 {
@@ -114,6 +217,14 @@ header section p {
   background: rgba(74, 85, 104, 0.3);
   border-radius: var(--border-radius-sm);
   border-left: 3px solid var(--color-primary);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease-out;
+}
+
+header section p.lazy-loaded {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 header ul {
@@ -166,7 +277,16 @@ article h3 {
 progress {
   width: 50%;
   height: 12px;
+  transform-origin: left;
+  animation: progressFill 2s ease-out forwards;
+  animation-delay: 1s;
 }
+
+/* Animación para cada barra de progreso individual */
+progress:nth-child(1) { animation-delay: 1.2s; }
+progress:nth-child(2) { animation-delay: 1.4s; }
+progress:nth-child(3) { animation-delay: 1.6s; }
+progress:nth-child(4) { animation-delay: 1.8s; }
 
 
 /* Footer */
@@ -184,6 +304,18 @@ footer {
     width: 95%;
     margin: 15px auto;
     padding: 20px;
+  }
+  
+  header img {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  main h2 {
+    animation: slideInLeft 0.6s ease-out;
+  }
+  
+  progress {
+    animation: progressFill 1.5s ease-out forwards;
   }
   
   header {
